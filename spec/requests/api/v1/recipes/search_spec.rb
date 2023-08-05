@@ -29,6 +29,8 @@ describe 'The Recipes API', type: :request do
         expect(recipe[:attributes][:country]).to eq(chosen_country)
         expect(recipe[:attributes]).to have_key(:image)
         expect(recipe[:attributes].keys.size).to eq(4)
+        expect(recipe[:attributes]).to_not have_key(:calories)
+        expect(recipe[:attributes]).to_not have_key(:dietLabels)
       end
     end
 
