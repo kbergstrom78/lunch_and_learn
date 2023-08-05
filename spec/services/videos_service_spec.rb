@@ -1,10 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe VideosService do
-  let(:response_body) { File.open('./spec/fixtures/sample_json/laos_video_search.json') }
-
   it '.get_videos', :vcr do
-    videos = VideosService.get_videos('morrocco')
+    videos = VideosService.get_videos('morocco')
 
     expect(videos).to be_a Hash
     expect(videos).to have_key :items
