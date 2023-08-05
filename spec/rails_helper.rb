@@ -8,7 +8,7 @@ require 'rspec/rails'
 
 require "simplecov"
 SimpleCov.start
-SimpleCov.add_filter %w[spec config application_cable jobs mailers]
+SimpleCov.add_filter %w[spec config application_cable jobs mailers app/models/application_record.rb]
 
 # Add additional requires below this line. Rails is not loaded until this point!
 

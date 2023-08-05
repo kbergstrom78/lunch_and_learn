@@ -25,7 +25,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Sat, 05 Aug 2023 21:31:41 GMT
+      - Sat, 05 Aug 2023 22:00:27 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -53,7 +53,7 @@ http_interactions:
           },
           "items": []
         }
-  recorded_at: Sat, 05 Aug 2023 21:31:41 GMT
+  recorded_at: Sat, 05 Aug 2023 22:00:27 GMT
 - request:
     method: get
     uri: https://api.unsplash.com/search/photos?client_id=unsplash_access_key&query=GrilledCheezistan
@@ -119,21 +119,21 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Sat, 05 Aug 2023 21:31:41 GMT
+      - Sat, 05 Aug 2023 22:00:27 GMT
       Age:
-      - '0'
+      - '1726'
       X-Served-By:
-      - cache-iad-kiad7000112-IAD, cache-den8255-DEN
+      - cache-iad-kiad7000112-IAD, cache-den8253-DEN
       X-Cache:
       - MISS, HIT
       X-Cache-Hits:
       - 0, 1
       X-Timer:
-      - S1691271102.718441,VS0,VE2
+      - S1691272828.530968,VS0,VE1
       Vary:
       - Accept-Encoding,Authorization,Accept-Language,client-geo-region,Accept
     body:
       encoding: ASCII-8BIT
       string: '{"total":0,"total_pages":0,"results":[]}'
-  recorded_at: Sat, 05 Aug 2023 21:31:41 GMT
+  recorded_at: Sat, 05 Aug 2023 22:00:27 GMT
 recorded_with: VCR 6.2.0
