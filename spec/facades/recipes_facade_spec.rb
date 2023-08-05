@@ -11,7 +11,7 @@ describe RecipesFacade do
       expect(recipes.first.title).to be_a(String)
     end
 
-    it 'handles an empty response gracefully', :vcr do
+    it 'handles an empty response', :vcr do
       country = ''
       recipes = RecipesFacade.get_recipes(country)
 
