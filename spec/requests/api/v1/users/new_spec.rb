@@ -33,6 +33,27 @@ RSpec.describe "Api::V1::Users", type: :request do
         expect(JSON.parse(response.body)).to include('error')
       end
     end
+
+    context 'with duplicate email' do
+      it 'returns an error message' do
+        user_attributes = attributes_for(:user)
+        post api_v1_users_path, params: { user: user_attributes }
+        post api_v1_users_path, params: { user: user_attributes }
+
+        expect(response.status).to eq(422)
+        expect(JSON.parse(response.body)['error']).to eq('Email has already been taken')
+      end
+    end
+
+    context 'with mismatched passwords' do
+      it 'returns an error message' do
+        user_attributes = attributes_for(:user, password: 'password1', password_confirmation: 'password2')
+        post api_v1_users_path, params: { user: user_attributes }
+
+        expect(response.status).to eq(422)
+        expect(JSON.parse(response.body)['error']).to eq("Password confirmation doesn't match Password")
+      end
+    end
   end
 end
 
