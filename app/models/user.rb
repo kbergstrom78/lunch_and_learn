@@ -6,8 +6,6 @@ class User < ApplicationRecord
 
   private
 
-  private
-
   def generate_api_key
     loop do
       self.api_key = SecureRandom.alphanumeric(12)
