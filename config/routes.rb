@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get 'recipes', to: 'recipes#search'
       get 'learning_resources', to: 'learning_resources#search'
       post 'users', to: 'users#create'
+      post 'sessions', to: 'sessions#create'
     end
   end
 end

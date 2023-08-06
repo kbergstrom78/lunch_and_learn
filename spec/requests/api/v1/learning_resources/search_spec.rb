@@ -1,12 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe 'LearningResources' do
+RSpec.describe 'LearningResources', type: :request do
   describe 'GET #search', :vcr do
+    let(:user) { create(:user) } # Define a user variable to use in the test cases
+
     context 'when videos and images are found' do
-      country = 'USA'
+      let(:country) { 'USA' }
 
       before :each do
-        get "/api/v1/learning_resources?country=#{country}"
+        get "/api/v1/learning_resources?country=#{country}", headers: { 'Authorization' => "Token token=\"#{user.api_key}\"" }
       end
 
       it 'returns a successful response' do
@@ -28,9 +30,10 @@ RSpec.describe 'LearningResources' do
     end
 
     context 'when no videos or images are found' do
+      let(:country) { 'GrilledCheezistan' }
+
       before do
-        country = 'GrilledCheezistan'
-        get "/api/v1/learning_resources?country=#{country}"
+        get "/api/v1/learning_resources?country=#{country}", headers: { 'Authorization' => "Token token=\"#{user.api_key}\"" }
       end
 
       it 'returns a successful response' do
