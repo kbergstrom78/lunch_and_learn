@@ -3,7 +3,7 @@ class Api::V1::FavoritesController < ApplicationController
 
   def create
     if @user.nil?
-      render_error("Invalid API key", :bad_request)
+      render json: { error: "Unauthorized request" }, status: :bad_request
     else
       favorite = Favorite.new(favorite_params)
       favorite.user_id = @user.id
@@ -24,6 +24,5 @@ class Api::V1::FavoritesController < ApplicationController
   def find_user
     @user = User.find_by(api_key: params[:api_key])
   end
-
 end
 

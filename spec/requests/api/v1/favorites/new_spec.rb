@@ -16,8 +16,7 @@ RSpec.describe "Favorites", type: :request do
     it "creates a favorite with a valid API key" do
       post "/api/v1/favorites", params: valid_attributes.to_json, headers: {
         'Content-Type' => 'application/json',
-        'Accept' => 'application/json',
-        'Authorization' => "Token token=\"#{user.api_key}\""
+        'Accept' => 'application/json'
       }
 
       expect(response).to have_http_status(:created)
@@ -27,12 +26,11 @@ RSpec.describe "Favorites", type: :request do
     it "returns an error with an invalid API key" do
       post "/api/v1/favorites", params: valid_attributes.merge(api_key: 'invalid').to_json, headers: {
         'Content-Type' => 'application/json',
-        'Accept' => 'application/json',
-        'Authorization' => "Token token=\"invalid\""
+        'Accept' => 'application/json'
       }
 
       expect(response).to have_http_status(:bad_request)
-      expect(JSON.parse(response.body)['error']).to eq('Invalid API key')
+      expect(JSON.parse(response.body)['error']).to eq('Unauthorized request')
     end
   end
 end
