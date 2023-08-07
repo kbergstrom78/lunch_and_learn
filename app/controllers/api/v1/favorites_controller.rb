@@ -1,4 +1,5 @@
 class Api::V1::FavoritesController < ApplicationController
+  skip_before_action :authenticate_request, only: [:create]
   before_action :find_user
 
   def create
