@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::API
-  include ActionController::HttpAuthentication::Token::ControllerMethods
   before_action :authenticate_request
 
   attr_reader :current_user
@@ -7,8 +6,11 @@ class ApplicationController < ActionController::API
   private
 
   def authenticate_request
-    authenticate_or_request_with_http_token do |token, options|
-      @current_user = User.find_by(api_key: token)
-    end
+    api_key = params[:api_key]
+    @current_user = User.find_by(api_key: api_key)
+  end
+  
+  def render_error(message, status)
+    render json: { error: message }, status: status
   end
 end
