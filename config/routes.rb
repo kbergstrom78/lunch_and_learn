@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
       get 'recipes', to: 'recipes#search'
@@ -7,6 +6,7 @@ Rails.application.routes.draw do
       post 'users', to: 'users#create'
       post 'sessions', to: 'sessions#create'
       post 'favorites', to: 'favorites#create'
+      get 'aqi/:country', to: 'aqi#show'
     end
   end
 end
