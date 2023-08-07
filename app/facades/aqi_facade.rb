@@ -13,8 +13,8 @@ class AqiFacade
         "city": capital_city,
         "attributes": {
           "aqi": air_quality[:overall_aqi],
-          "pm25_concentration": air_quality[:"PM2.5"][:concentration], # Updated to match response structure
-          "co_concentration": air_quality[:CO][:concentration] # Updated to match response structure
+          "pm25_concentration": air_quality[:"PM2.5"][:concentration],
+          "co_concentration": air_quality[:CO][:concentration]
         }
       }
     }

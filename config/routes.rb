@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       post 'users', to: 'users#create'
       post 'sessions', to: 'sessions#create'
       post 'favorites', to: 'favorites#create'
-      get 'aqi/:country', to: 'aqi#show'
+      get 'air_quality', to: 'air_quality#search'
     end
   end
 end

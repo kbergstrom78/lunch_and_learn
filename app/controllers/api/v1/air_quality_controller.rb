@@ -1,5 +1,5 @@
-class Api::V1::AqiController < ApplicationController
-  def show
+class Api::V1::AirQualityController < ApplicationController
+  def search
     country_name = params[:country]
     aqi = AqiFacade.new(country_name)
 
