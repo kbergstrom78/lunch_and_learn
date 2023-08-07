@@ -14,7 +14,7 @@ RSpec.describe "Api::V1::Users", type: :request do
 
       it 'creates a new User' do
         expect {
-          post "/api/v1/users", params: { user: valid_attributes }, as: :json
+          post "/api/v1/users", params: valid_attributes, as: :json
         }.to change(User, :count).by(1)
 
         expect(response).to have_http_status(:created)
@@ -38,7 +38,7 @@ RSpec.describe "Api::V1::Users", type: :request do
 
       it 'does not create a new User' do
         expect {
-          post "/api/v1/users", params: { user: invalid_attributes }, as: :json
+          post "/api/v1/users", params: invalid_attributes, as: :json
         }.not_to change(User, :count)
 
         expect(response).to have_http_status(:unprocessable_entity)
@@ -49,8 +49,8 @@ RSpec.describe "Api::V1::Users", type: :request do
     context 'with duplicate email' do
       it 'returns an error message' do
         user_attributes = attributes_for(:user)
-        post "/api/v1/users", params: { user: user_attributes }, as: :json
-        post "/api/v1/users", params: { user: user_attributes }, as: :json
+        post "/api/v1/users", params: user_attributes, as: :json
+        post "/api/v1/users", params: user_attributes, as: :json
 
         expect(response.status).to eq(422)
         expect(JSON.parse(response.body)['error']).to eq('Email has already been taken')
