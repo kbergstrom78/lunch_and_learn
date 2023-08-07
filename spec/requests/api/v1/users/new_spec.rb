@@ -14,7 +14,7 @@ RSpec.describe "Api::V1::Users", type: :request do
       it 'renders a JSON response with the new user API key' do
         post "/api/v1/users", params: { user: valid_attributes }
         expect(response).to have_http_status(:created)
-        expect(JSON.parse(response.body)).to include('api_key')
+        expect(JSON.parse(response.body)['data']['attributes']).to have_key('api_key')
       end
     end
 
