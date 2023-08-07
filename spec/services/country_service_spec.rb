@@ -19,7 +19,4 @@ RSpec.describe CountryService do
     expect(capital_city).to be_a(String)
     expect(capital_city).to eq("Paris")
   end
-
-
-
 end

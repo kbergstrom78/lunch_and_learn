@@ -3,6 +3,6 @@ class Api::V1::AirQualityController < ApplicationController
     country_name = params[:country]
     aqi = AqiFacade.new(country_name)
 
-    render json: aqi.air_quality_data, serializer: AqiSerializer
+    render json: aqi.air_quality_data, serializer: ::AirQualitySerializer
   end
 end
