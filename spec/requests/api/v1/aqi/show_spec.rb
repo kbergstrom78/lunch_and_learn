@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe Api::V1::AirQualityController, type: :request do
   describe 'GET #show', :vcr do
     [
-      { country_name: 'France', city: 'Paris', aqi: 84, pm25: 2.47, co: 220.3 },
-      { country_name: 'Nigeria', city: 'Abuja', aqi: 25, pm25: 4.21, co: 433.92 },
-      { country_name: 'Cuba', city: 'Havana', aqi: 69, pm25: 6.57, co: 240.33 }
+      { country_name: 'France', city: 'Paris', aqi: 84, pm25: 2.74, co: 220.3 },
+      { country_name: 'Nigeria', city: 'Abuja', aqi: 25, pm25: 5.23, co: 467.3 },
+      { country_name: 'Cuba', city: 'Havana', aqi: 110, pm25: 6.88, co: 250.34 }
     ].each do |test_case|
 
       context "when country is #{test_case[:country_name]}" do
