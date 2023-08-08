@@ -46,7 +46,7 @@ The purpose of this project is to simulate the real-world challenge of developin
 2. cd into the root directory
 3. Run ```bundle install```
 4. Run ```bundle exec figaro install```
-5. Run ```rails db:{create,migrate}
+5. Run ```rails db:{create,migrate}```
 6. To run this server, run ```rails s``` in the terminal
 7. To stop the local server, use ```ctl + c```
 8. Sign up for the following (no cost) APIs:
