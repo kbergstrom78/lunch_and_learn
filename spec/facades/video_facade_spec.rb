@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe VideoFacade, type: :model do
   describe '.get_video' do
     it 'returns a video for a given country', :vcr do
-      country = "USA"
+      country = 'USA'
       video = VideoFacade.get_video(country)
 
       expect(video).to be_a(Video)
@@ -11,7 +13,7 @@ RSpec.describe VideoFacade, type: :model do
     end
 
     it 'returns nil if no videos are found', :vcr do
-      country = "KimsCountryofGreatness"
+      country = 'KimsCountryofGreatness'
       video = VideoFacade.get_video(country)
 
       expect(video).to eq(nil)

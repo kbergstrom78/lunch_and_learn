@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'The Recipes API', type: :request do
@@ -20,7 +22,7 @@ describe 'The Recipes API', type: :request do
         expect(recipe[:id]).to eq(nil)
 
         expect(recipe).to have_key(:type)
-        expect(recipe[:type]).to eq("recipe")
+        expect(recipe[:type]).to eq('recipe')
 
         expect(recipe).to have_key(:attributes)
         expect(recipe[:attributes]).to have_key(:title)
@@ -76,7 +78,7 @@ describe 'The Recipes API', type: :request do
     end
 
     it 'returns an empty array when an empty string is given as a parameter', :vcr do
-      get "/api/v1/recipes?country=", headers: { 'Authorization' => "Token token=\"#{user.api_key}\"" }
+      get '/api/v1/recipes?country=', headers: { 'Authorization' => "Token token=\"#{user.api_key}\"" }
       expect(response).to be_successful
 
       no_recipes = JSON.parse(response.body, symbolize_names: true)

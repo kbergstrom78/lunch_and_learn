@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 
-require "simplecov"
+require 'simplecov'
 SimpleCov.start
 SimpleCov.add_filter %w[spec config application_cable jobs mailers serializers app/models/application_record.rb]
 
@@ -72,10 +74,10 @@ end
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
-  config.filter_sensitive_data("edamam_key") { ENV["edamam_key"] }
-  config.filter_sensitive_data("edamam_id") { ENV["edamam_key"] }
-  config.filter_sensitive_data("youtube_key") { ENV["youtube_key"] }
-  config.filter_sensitive_data("unsplash_access_key") { ENV["unsplash_access_key"] }
+  config.filter_sensitive_data('edamam_key') { ENV['edamam_key'] }
+  config.filter_sensitive_data('edamam_id') { ENV['edamam_key'] }
+  config.filter_sensitive_data('youtube_key') { ENV['youtube_key'] }
+  config.filter_sensitive_data('unsplash_access_key') { ENV['unsplash_access_key'] }
   config.configure_rspec_metadata!
 end
 

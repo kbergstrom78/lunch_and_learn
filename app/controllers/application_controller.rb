@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::API
   before_action :authenticate_request
 
@@ -7,6 +9,6 @@ class ApplicationController < ActionController::API
 
   def authenticate_request
     @user = User.find_by(api_key: params[:api_key])
-    render json: { error: "Invalid API key" }, status: :bad_request if @user.nil?
+    render json: { error: 'Invalid API key' }, status: :bad_request if @user.nil?
   end
 end

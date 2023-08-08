@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VideoFacade
   def self.get_video(country)
     videos = VideosService.get_videos(country)

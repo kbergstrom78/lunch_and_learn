@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Video
   attr_reader :title,
               :youtube_id

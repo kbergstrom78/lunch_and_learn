@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CountryService do
@@ -7,7 +9,6 @@ RSpec.describe CountryService do
     expect(countries).to be_an Array
 
     countries.each do |country|
-
       expect(country).to have_key :name
       expect(country[:name]).to have_key :common
     end

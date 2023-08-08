@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_secure_password
   has_many :favorites, dependent: :destroy
@@ -11,11 +13,7 @@ class User < ApplicationRecord
 
     loop do
       self.api_key = SecureRandom.alphanumeric(12)
-      break unless User.exists?(api_key: api_key)
+      break unless User.exists?(api_key:)
     end
   end
 end
-
-
-
-

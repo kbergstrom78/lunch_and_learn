@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe CountryFacade do
   describe '.get_country' do
     context 'when country is nil' do
       it 'returns a random country name', :vcr do
-        allow(CountryService).to receive(:all_countries).and_return([ { name: { common: 'United States' } }, { name: { common: 'France' } } ])
+        allow(CountryService).to receive(:all_countries).and_return([{ name: { common: 'United States' } },
+                                                                     { name: { common: 'France' } }])
 
         result = CountryFacade.get_country(nil)
 

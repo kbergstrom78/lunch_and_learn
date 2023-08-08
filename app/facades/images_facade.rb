@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ImagesFacade
   def self.get_images(country)
     images = ImagesService.get_images(country)

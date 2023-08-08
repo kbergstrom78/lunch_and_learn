@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'LearningResources', type: :request do
@@ -8,7 +10,8 @@ RSpec.describe 'LearningResources', type: :request do
       let(:country) { 'USA' }
 
       before :each do
-        get "/api/v1/learning_resources?country=#{country}", headers: { 'Authorization' => "Token token=\"#{user.api_key}\"" }
+        get "/api/v1/learning_resources?country=#{country}",
+            headers: { 'Authorization' => "Token token=\"#{user.api_key}\"" }
       end
 
       it 'returns a successful response' do
@@ -22,8 +25,11 @@ RSpec.describe 'LearningResources', type: :request do
           'type' => 'learning_resource',
           'attributes' => hash_including(
             'country' => country,
-            'video' => hash_including('title' => 'A Super Quick History of Saudi Arabia', 'youtube_id' => 'g6de09dl2wk'),
-            'images' => array_including(hash_including('alt_tag' => 'Statue of Liberty, New York under white and blue cloudy skies', 'url' => anything))
+            'video' => hash_including('title' => 'A Super Quick History of Saudi Arabia',
+                                      'youtube_id' => 'g6de09dl2wk'),
+            'images' => array_including(hash_including(
+                                          'alt_tag' => 'Statue of Liberty, New York under white and blue cloudy skies', 'url' => anything
+                                        ))
           )
         )
       end
@@ -33,7 +39,8 @@ RSpec.describe 'LearningResources', type: :request do
       let(:country) { 'GrilledCheezistan' }
 
       before do
-        get "/api/v1/learning_resources?country=#{country}", headers: { 'Authorization' => "Token token=\"#{user.api_key}\"" }
+        get "/api/v1/learning_resources?country=#{country}",
+            headers: { 'Authorization' => "Token token=\"#{user.api_key}\"" }
       end
 
       it 'returns a successful response' do
