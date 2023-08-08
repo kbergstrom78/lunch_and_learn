@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RecipesFacade
   def self.get_recipes(country)
     recipes = RecipesService.get_recipes(country)

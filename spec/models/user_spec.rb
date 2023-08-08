@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'relationships' do
     it { should have_many :favorites }
   end
-  
+
   describe 'validations' do
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:email) }
@@ -28,7 +30,8 @@ RSpec.describe User, type: :model do
     end
 
     it 'ensures the API key is unique' do
-      existing_user = User.create(email: 'existing@example.com', password: 'password', password_confirmation: 'password')
+      existing_user = User.create(email: 'existing@example.com', password: 'password',
+                                  password_confirmation: 'password')
       allow(SecureRandom).to receive(:alphanumeric).and_return(existing_user.api_key, 'new_unique_key')
 
       new_user = User.create(email: 'new@example.com', password: 'password', password_confirmation: 'password')

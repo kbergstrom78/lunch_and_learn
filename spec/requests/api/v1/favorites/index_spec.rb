@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Favorites", type: :request do
+RSpec.describe 'Api::V1::Favorites', type: :request do
   describe 'GET index' do
     before :each do
       @user1 = User.create!(name: 'kila', email: 'kila@puppy.com', password: 'test1',
@@ -14,7 +16,7 @@ RSpec.describe "Api::V1::Favorites", type: :request do
                                     recipe_link: 'https://www.seriouseats.com/kenji_rulez.html',
                                     recipe_title: 'Garlic Noodles (a San Francisco Treat, not THE San Francisco Treat)')
 
-      @favorite2 = Favorite.create!(user_id: @user1.id,country: 'egypt',
+      @favorite2 = Favorite.create!(user_id: @user1.id, country: 'egypt',
                                     recipe_link: 'http://www.thekitchn.com/why-is-the-e-missing.html',
                                     recipe_title: 'Recipe: Egyptian Tomato Soup')
 
@@ -25,14 +27,14 @@ RSpec.describe "Api::V1::Favorites", type: :request do
 
     it 'can get all favorites for a given user' do
       headers = {
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json'
-                }
+        'Content-Type' => 'application/json',
+        'Accept' => 'application/json'
+      }
 
-      get "/api/v1/favorites?api_key=#{@user1.api_key}", headers: headers
+      get("/api/v1/favorites?api_key=#{@user1.api_key}", headers:)
 
       expect(response).to be_successful
-      favorites = JSON.parse(response.body,symbolize_names: true)
+      favorites = JSON.parse(response.body, symbolize_names: true)
 
       expect(favorites).to be_a(Hash)
       expect(favorites).to have_key(:data)
@@ -42,7 +44,7 @@ RSpec.describe "Api::V1::Favorites", type: :request do
       favorites[:data].each do |favorite|
         expect(favorite).to have_key(:id)
         expect(favorite).to have_key(:type)
-        expect(favorite[:type]).to eq("favorite")
+        expect(favorite[:type]).to eq('favorite')
 
         expect(favorite).to have_key(:attributes)
         expect(favorite[:attributes]).to have_key(:recipe_title)
@@ -55,11 +57,11 @@ RSpec.describe "Api::V1::Favorites", type: :request do
 
     it 'returns an error when an invalid api_key is used to get all favorites' do
       headers = {
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json'
-                }
+        'Content-Type' => 'application/json',
+        'Accept' => 'application/json'
+      }
 
-      get "/api/v1/favorites?api_key=zyxwvu098765", headers: headers
+      get('/api/v1/favorites?api_key=zyxwvu098765', headers:)
 
       error_data = JSON.parse(response.body, symbolize_names: true)
 
@@ -72,11 +74,11 @@ RSpec.describe "Api::V1::Favorites", type: :request do
 
     it 'returns an empty array if the user has no favorites' do
       headers = {
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json'
-                }
+        'Content-Type' => 'application/json',
+        'Accept' => 'application/json'
+      }
 
-      get "/api/v1/favorites?api_key=#{@user3.api_key}", headers: headers
+      get("/api/v1/favorites?api_key=#{@user3.api_key}", headers:)
 
       no_data = JSON.parse(response.body, symbolize_names: true)
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::Sessions', type: :request do
@@ -6,7 +8,8 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
 
     context 'with valid credentials' do
       it 'returns user details and api key' do
-        post '/api/v1/sessions', params: { email: user.email, password: user.password }.to_json, headers: { 'Content-Type': 'application/json' }
+        post '/api/v1/sessions', params: { email: user.email, password: user.password }.to_json,
+                                 headers: { 'Content-Type': 'application/json' }
 
         expect(response).to have_http_status(:ok)
 
@@ -20,7 +23,8 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
 
     context 'with invalid credentials' do
       it 'returns an error message' do
-        post '/api/v1/sessions', params: { email: user.email, password: 'wrong_password' }.to_json, headers: { 'Content-Type': 'application/json' }
+        post '/api/v1/sessions', params: { email: user.email, password: 'wrong_password' }.to_json,
+                                 headers: { 'Content-Type': 'application/json' }
 
         expect(response).to have_http_status(:unauthorized)
         expect(JSON.parse(response.body)['error']).to eq('Invalid credentials')

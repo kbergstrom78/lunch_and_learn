@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Favorites", type: :request do
+RSpec.describe 'Api::V1::Favorites', type: :request do
   describe 'DELETE /api/v1/favorites/:id' do
     let(:user) { create(:user) }
     let!(:favorite) { create(:favorite, user_id: user.id) }
