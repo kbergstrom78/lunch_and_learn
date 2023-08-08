@@ -30,7 +30,7 @@ RSpec.describe "Favorites", type: :request do
       }
 
       expect(response).to have_http_status(:bad_request)
-      expect(JSON.parse(response.body)['error']).to eq('Unauthorized request')
+      expect(JSON.parse(response.body)['error']).to eq('Invalid API key')
     end
   end
 end
