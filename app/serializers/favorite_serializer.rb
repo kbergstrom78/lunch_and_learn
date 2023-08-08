@@ -1,6 +1,10 @@
 class FavoriteSerializer
   include JSONAPI::Serializer
-  attributes :country, :recipe_link, :recipe_title
+  set_type :favorite
 
-  belongs_to :user
+  attributes :recipe_title, :recipe_link, :country, :created_at
+
+  attribute :created_at do |object|
+    object.created_at&.iso8601
+  end
 end

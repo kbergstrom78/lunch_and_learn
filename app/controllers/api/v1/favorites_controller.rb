@@ -1,6 +1,15 @@
 class Api::V1::FavoritesController < ApplicationController
-  skip_before_action :authenticate_request, only: [:create]
   before_action :find_user
+
+  def index
+    if @user.nil?
+      render json: { error: "Invalid API key" }, status: :unprocessable_entity
+      return
+    end
+
+    favorites = @user.favorites
+    render json: FavoriteSerializer.new(favorites), status: :ok
+  end
 
   def create
     if @user.nil?
@@ -19,11 +28,15 @@ class Api::V1::FavoritesController < ApplicationController
   private
 
   def favorite_params
-    params.permit(:country, :recipe_link, :recipe_title)
+    params.require(:favorite).permit(:country, :recipe_link, :recipe_title)
   end
 
   def find_user
     @user = User.find_by(api_key: params[:api_key])
+  end
+
+  def render_error(message, status)
+    render json: { error: message }, status: status
   end
 end
 
