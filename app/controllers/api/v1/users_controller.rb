@@ -2,6 +2,7 @@ class Api::V1::UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
 
   def create
+    # require 'pry'; binding.pry
     user = User.new(user_params)
 
     if User.exists?(email: user.email)
