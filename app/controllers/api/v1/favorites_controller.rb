@@ -3,7 +3,7 @@ class Api::V1::FavoritesController < ApplicationController
 
   def index
     if @user.nil?
-      render json: { error: "Invalid API key" }, status: :unprocessable_entity
+      render json: { error: "Invalid API key" }, status: 400
       return
     end
 
@@ -25,6 +25,17 @@ class Api::V1::FavoritesController < ApplicationController
     end
   end
 
+  def destroy
+    favorite = Favorite.find_by(id: params[:id], user_id: @user.id)
+
+    if favorite
+      favorite.destroy
+      render json: { success: "Favorite deleted successfully" }, status: :ok
+    else
+      render json: { error: "Favorite not found" }, status: :not_found
+    end
+  end
+  
   private
 
   def favorite_params
